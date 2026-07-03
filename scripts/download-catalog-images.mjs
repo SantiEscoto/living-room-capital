@@ -6,33 +6,32 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outDir = path.join(__dirname, "../public/images/catalog");
 fs.mkdirSync(outDir, { recursive: true });
 
-/** Imágenes locales (Unsplash) — reemplazar con fotos reales del showroom en public/images/catalog/ */
-const images = {
-  "sala-showroom.jpg":
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=960&q=85",
-  "sala-esquinera.jpg":
-    "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=960&q=85",
-  "sillon-tapizado.jpg":
-    "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=960&q=85",
-  "sillon-clasico.jpg":
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=960&q=85",
-  "reclinable.jpg":
-    "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=960&q=85",
-  "futon.jpg":
-    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=960&q=85",
-  "sofa-cama.jpg":
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=960&q=85",
-  "sala-lineal.jpg":
-    "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=960&q=85",
-};
+const CONSTRUEX_BASE =
+  "https://www.construex.com.mx/exhibidores/living_room_capital/producto/";
 
-for (const [name, url] of Object.entries(images)) {
-  const res = await fetch(url);
-  if (!res.ok) {
-    console.error(`FAIL ${name}: ${res.status}`);
+const products = [
+  { slug: "muebles_s_mexico", file: "construex-s.jpg" },
+  { slug: "muebles_q_mexico", file: "construex-q.jpg" },
+  { slug: "muebles_e_mexico", file: "construex-e.jpg" },
+  { slug: "muebles_x_mexico_", file: "construex-x.jpg" },
+  { slug: "muebles_w_mexico", file: "construex-w.jpg" },
+  { slug: "muebles_f_mexico", file: "construex-f.jpg" },
+  { slug: "muebles_t_mexico", file: "construex-t.jpg" },
+  { slug: "muebles_a_mexico", file: "construex-a.jpg" },
+  { slug: "muebles_d_mexico", file: "construex-d.jpg" },
+  { slug: "muebles_y_mexico", file: "construex-y.jpg" },
+];
+
+for (const { slug, file } of products) {
+  const res = await fetch(CONSTRUEX_BASE + slug);
+  const html = await res.text();
+  const og = html.match(/property="og:image" content="([^"]+)"/);
+  if (!og?.[1]) {
+    console.error(`FAIL ${file}: no og:image for ${slug}`);
     continue;
   }
-  const buf = Buffer.from(await res.arrayBuffer());
-  fs.writeFileSync(path.join(outDir, name), buf);
-  console.log(`OK ${name}: ${buf.length} bytes`);
+  const imgRes = await fetch(og[1]);
+  const buf = Buffer.from(await imgRes.arrayBuffer());
+  fs.writeFileSync(path.join(outDir, file), buf);
+  console.log(`OK ${file}: ${buf.length} bytes`);
 }

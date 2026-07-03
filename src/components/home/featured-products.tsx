@@ -55,7 +55,7 @@ export function FeaturedProducts() {
                   </Badge>
                   {product.realPhoto && (
                     <Badge className="absolute right-3 top-3 bg-[#FFA500] text-black">
-                      Foto real
+                      Catálogo real
                     </Badge>
                   )}
                 </div>

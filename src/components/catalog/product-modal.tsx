@@ -44,7 +44,7 @@ export function ProductModal({
           <div className="flex flex-wrap items-center gap-2">
             <Badge className="bg-[#3B82F6]">{product.category}</Badge>
             {product.realPhoto && (
-              <Badge className="bg-[#FFA500] text-black">Foto real</Badge>
+              <Badge className="bg-[#FFA500] text-black">Catálogo real</Badge>
             )}
             <button
               type="button"
@@ -75,6 +75,22 @@ export function ProductModal({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-lg font-semibold text-[#25D366]">{product.price}</p>
           <div className="flex flex-wrap gap-2">
+            {product.construexUrl && (
+              <Button
+                asChild
+                variant="outline"
+                className="border-[#FF6B00]/40 text-[#FF6B00] hover:bg-[#FF6B00]/10"
+              >
+                <a
+                  href={product.construexUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Ver en Construex
+                </a>
+              </Button>
+            )}
             {product.facebookPostUrl && (
               <Button
                 asChild

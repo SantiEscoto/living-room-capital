@@ -7,6 +7,8 @@ export const BUSINESS = {
   whatsappDisplay: "+52 1 55 8537 0697",
   email: "livingroomcapital@hotmail.com",
   facebook: "https://www.facebook.com/people/Living-Room-Capital/100063508091602/",
+  construex:
+    "https://www.construex.com.mx/exhibidores/living_room_capital/productos",
   hours: "Lunes a Domingo: 10:00 AM - 6:00 PM",
   address:
     "Local 102, Mercado Vasco de Quiroga, Av. Insurgentes Sur s/n, Tlalpan, 14000 CDMX",
@@ -51,6 +53,7 @@ export interface Product {
   realPhoto?: boolean;
   modelUrl?: string;
   facebookPostUrl?: string;
+  construexUrl?: string;
   seedLikes?: number;
 }
 
@@ -160,117 +163,146 @@ export const PRODUCTS: Product[] = [
     image:
       "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
   },
-  // Productos con fotos reales del showroom (Living Room Capital — Facebook)
+  // Productos reales — catálogo Living Room Capital en Construex
   {
-    id: "sala-real-showroom",
-    name: "Sala Modular — Showroom CREA",
+    id: "construex-s",
+    name: "Muebles S México",
     category: "Salas",
     description:
-      "Sala de fábrica propia fotografiada en nuestro showroom del Mercado Vasco de Quiroga. Tapizado premium, diseño modular.",
+      "Sala de fábrica propia Living Room Capital. Tapizado premium, fabricación en Mercado CREA, Tlalpan.",
     price: PRODUCT_PRICE,
-    image: "/images/catalog/sala-showroom.jpg",
+    image: "/images/catalog/construex-s.jpg",
     featured: true,
     realPhoto: true,
     modelUrl: "/models/sala.glb",
-    seedLikes: 48,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=536078428519089&set=pb.100063508091602.-2207520000",
+    seedLikes: 45,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_s_mexico",
   },
   {
-    id: "sala-real-esquinera",
-    name: "Sala Esquinera — Foto Real",
+    id: "construex-q",
+    name: "Muebles Q México",
     category: "Salas",
     description:
-      "Sala esquinera fabricada en Tlalpan. Colores y telas personalizables. Precio directo de fábrica.",
+      "Mueble de sala de estar de fábrica propia. Diseño y calidad Living Room Capital.",
     price: PRODUCT_PRICE,
-    image: "/images/catalog/sala-esquinera.jpg",
-    realPhoto: true,
-    modelUrl: "/models/sala.glb",
-    seedLikes: 35,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=534212488705683&set=pb.100063508091602.-2207520000",
-  },
-  {
-    id: "sillon-real-tapizado",
-    name: "Sillón Tapizado — Foto Real",
-    category: "Sillones",
-    description:
-      "Sillón tapizado de fábrica propia. Disponible en múltiples colores y telas. Asesoría en showroom.",
-    price: PRODUCT_PRICE,
-    image: "/images/catalog/sillon-tapizado.jpg",
+    image: "/images/catalog/construex-q.jpg",
     featured: true,
     realPhoto: true,
-    modelUrl: "/models/sillon.glb",
-    seedLikes: 52,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=534212492039016&set=pb.100063508091602.-2207520000",
+    modelUrl: "/models/sala.glb",
+    seedLikes: 42,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_q_mexico",
   },
   {
-    id: "sillon-real-clasico",
-    name: "Sillón Clásico — Foto Real",
+    id: "construex-e",
+    name: "Muebles E México",
+    category: "Salas",
+    description:
+      "Sala modular fabricada en CDMX. Precios directos de fábrica en Tlalpan.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/construex-e.jpg",
+    featured: true,
+    realPhoto: true,
+    modelUrl: "/models/sala.glb",
+    seedLikes: 40,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_e_mexico",
+  },
+  {
+    id: "construex-x",
+    name: "Muebles X México",
     category: "Sillones",
     description:
-      "Sillón clásico con acabados de primera calidad. Fabricación directa en Mercado CREA, Tlalpan.",
+      "Sillón tapizado de fábrica propia. Disponible en múltiples telas y colores.",
     price: PRODUCT_PRICE,
-    image: "/images/catalog/sillon-clasico.jpg",
+    image: "/images/catalog/construex-x.jpg",
     realPhoto: true,
     modelUrl: "/models/sillon.glb",
-    seedLikes: 29,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=113331270547494&set=pb.100063508091602.-2207520000",
+    seedLikes: 38,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_x_mexico_",
   },
   {
-    id: "reclinable-real",
-    name: "Reclinable — Foto Real",
+    id: "construex-w",
+    name: "Muebles W México",
     category: "Reclinables",
     description:
-      "Reclinable de fábrica con mecanismo suave y tapizado resistente. Visítanos en Local 102.",
+      "Reclinable de fábrica con acabados de primera. Visítanos en Local 102, Mercado CREA.",
     price: PRODUCT_PRICE,
-    image: "/images/catalog/reclinable.jpg",
+    image: "/images/catalog/construex-w.jpg",
     realPhoto: true,
-    seedLikes: 31,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=113331217214166&set=pb.100063508091602.-2207520000",
+    seedLikes: 36,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_w_mexico",
   },
   {
-    id: "futon-real",
-    name: "Futón — Foto Real",
+    id: "construex-f",
+    name: "Muebles F México",
     category: "Futones",
     description:
-      "Futón versátil ideal para espacios compactos. Fabricación propia con precios directos.",
+      "Futón versátil de fabricación propia. Ideal para espacios compactos en CDMX.",
     price: PRODUCT_PRICE,
-    image: "/images/catalog/futon.jpg",
+    image: "/images/catalog/construex-f.jpg",
     realPhoto: true,
-    seedLikes: 22,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=113331117214176&set=pb.100063508091602.-2207520000",
+    seedLikes: 34,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_f_mexico",
   },
   {
-    id: "sofa-cama-real",
-    name: "Sofá Cama — Foto Real",
+    id: "construex-t",
+    name: "Muebles T México",
     category: "Sofás Cama",
     description:
-      "Sofá cama de fábrica propia. Maximiza tu espacio sin sacrificar estilo ni confort.",
+      "Sofá cama de fábrica propia. Maximiza tu espacio sin sacrificar confort.",
     price: PRODUCT_PRICE,
-    image: "/images/catalog/sofa-cama.jpg",
+    image: "/images/catalog/construex-t.jpg",
     realPhoto: true,
-    seedLikes: 27,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=113331097214178&set=pb.100063508091602.-2207520000",
+    seedLikes: 33,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_t_mexico",
   },
   {
-    id: "sala-real-lineal",
-    name: "Sala Lineal — Foto Real",
+    id: "construex-a",
+    name: "Muebles A México",
+    category: "Sillones",
+    description:
+      "Sillón clásico con acabados de primera calidad. Fabricación directa en Tlalpan.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/construex-a.jpg",
+    realPhoto: true,
+    modelUrl: "/models/sillon.glb",
+    seedLikes: 31,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_a_mexico",
+  },
+  {
+    id: "construex-d",
+    name: "Muebles D México",
     category: "Salas",
     description:
-      "Sala lineal contemporánea fabricada en CDMX. Entrega en Tlalpan, CDMX y Estado de México.",
+      "Sala esquinera fabricada a medida. Colores y telas personalizables.",
     price: PRODUCT_PRICE,
-    image: "/images/catalog/sala-lineal.jpg",
+    image: "/images/catalog/construex-d.jpg",
     realPhoto: true,
     modelUrl: "/models/sala.glb",
-    seedLikes: 41,
-    facebookPostUrl:
-      "https://www.facebook.com/photo/?fbid=113331340547487&set=pb.100063508091602.-2207520000",
+    seedLikes: 29,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_d_mexico",
+  },
+  {
+    id: "construex-y",
+    name: "Muebles Y México",
+    category: "Sillones",
+    description:
+      "Sillón de diseño contemporáneo. Fábrica propia Living Room Capital.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/construex-y.jpg",
+    realPhoto: true,
+    modelUrl: "/models/sillon.glb",
+    seedLikes: 27,
+    construexUrl:
+      "https://www.construex.com.mx/exhibidores/living_room_capital/producto/muebles_y_mexico",
   },
 ];
 

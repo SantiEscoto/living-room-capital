@@ -3,7 +3,6 @@
 import { Heart, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -64,7 +63,7 @@ export function ProductCard({
           </Badge>
           {product.realPhoto && (
             <Badge className="absolute right-3 top-3 bg-[#FFA500] text-black">
-              Foto real
+              Catálogo real
             </Badge>
           )}
           {isTop && (
@@ -73,12 +72,11 @@ export function ProductCard({
               Más popular
             </Badge>
           )}
-          <Button
-            size="icon-sm"
-            variant="ghost"
+          <button
+            type="button"
             className={cn(
-              "absolute bottom-3 right-3 h-8 gap-1 rounded-full border border-white/10 bg-black/50 px-2 text-xs backdrop-blur-sm hover:bg-black/70",
-              isLiked && "text-red-400"
+              "absolute bottom-3 right-3 inline-flex h-8 min-w-[3rem] items-center justify-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 text-xs font-medium tabular-nums backdrop-blur-sm transition-colors hover:bg-black/80",
+              isLiked ? "text-red-400" : "text-white"
             )}
             onClick={(e) => {
               e.stopPropagation();
@@ -86,9 +84,11 @@ export function ProductCard({
             }}
             aria-label={isLiked ? "Quitar me gusta" : "Me gusta"}
           >
-            <Heart className={cn("h-3.5 w-3.5", isLiked && "fill-current")} />
-            {totalLikes}
-          </Button>
+            <Heart
+              className={cn("h-3.5 w-3.5 shrink-0", isLiked && "fill-current")}
+            />
+            <span>{totalLikes}</span>
+          </button>
         </div>
         <CardHeader className="pb-2">
           <CardTitle className={cn("text-white", isTop && "text-xl")}>
