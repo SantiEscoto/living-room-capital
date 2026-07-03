@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,7 +16,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ProductImage } from "@/components/catalog/product-image";
 import { PRODUCTS, type Product } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 
 const featured = [...PRODUCTS.filter((p) => p.featured)].sort(
   (a, b) => (b.seedLikes ?? 0) - (a.seedLikes ?? 0)
@@ -26,30 +26,25 @@ const row2 = featured.filter((_, i) => i % 2 === 1);
 
 function FeaturedProductCard({ product }: { product: Product }) {
   return (
-    <Card className="group overflow-hidden border-white/5 bg-[#111111] transition-colors hover:border-[#3B82F6]/30">
+    <Card className="group border-white/5 bg-[#111111] transition-colors hover:border-[#3B82F6]/30">
       <div className="relative aspect-[4/3] overflow-hidden">
         <ProductImage src={product.image} alt={product.name} />
-        <Badge className="absolute left-2 top-2 bg-[#3B82F6] text-[10px] text-white sm:left-3 sm:top-3 sm:text-xs">
+        <Badge className="absolute left-3 top-3 bg-[#3B82F6] text-xs text-white">
           {product.category}
         </Badge>
-        {product.realPhoto && (
-          <Badge className="absolute right-2 top-2 bg-[#FFA500] text-[9px] text-black sm:right-3 sm:top-3 sm:text-xs">
-            Catálogo real
-          </Badge>
-        )}
       </div>
-      <CardHeader className="gap-2 p-4 pb-2">
+      <CardHeader className="gap-2">
         <CardTitle className="line-clamp-1 text-base text-white sm:text-lg">
           {product.name}
         </CardTitle>
-        <CardDescription className="line-clamp-2 text-sm leading-relaxed">
+        <CardDescription className="line-clamp-2 leading-relaxed">
           {product.description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="px-4 pb-2 pt-0">
+      <CardContent>
         <p className="text-sm font-semibold text-[#25D366]">{product.price}</p>
       </CardContent>
-      <CardFooter className="p-4 pt-0">
+      <CardFooter>
         <Button
           asChild
           variant="ghost"
@@ -70,27 +65,79 @@ function MarqueeRow({
   products: Product[];
   direction: "left" | "right";
 }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const [paused, setPaused] = useState(false);
   const loop = [...products, ...products];
 
+  const pause = useCallback(() => {
+    pausedRef.current = true;
+    setPaused(true);
+  }, []);
+
+  const resumeLater = useCallback(() => {
+    window.setTimeout(() => {
+      pausedRef.current = false;
+      setPaused(false);
+    }, 2500);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    if (direction === "right") {
+      el.scrollLeft = el.scrollWidth / 2;
+    }
+
+    const speed = direction === "left" ? 0.6 : -0.6;
+    let frame = 0;
+
+    const tick = () => {
+      if (!pausedRef.current && el.scrollWidth > el.clientWidth) {
+        el.scrollLeft += speed;
+        const half = el.scrollWidth / 2;
+
+        if (direction === "left" && el.scrollLeft >= half) {
+          el.scrollLeft -= half;
+        } else if (direction === "right" && el.scrollLeft <= 0) {
+          el.scrollLeft += half;
+        }
+      }
+      frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [direction, products.length]);
+
   return (
-    <div className="relative py-2 [mask-image:linear-gradient(to_right,transparent,black_32px,black_calc(100%-32px),transparent)]">
-      <div className="overflow-hidden">
-        <div
-          className={cn(
-            "flex w-max items-stretch gap-5 hover:[animation-play-state:paused] motion-reduce:animate-none",
-            direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
-          )}
-        >
-          {loop.map((product, i) => (
-            <div
-              key={`${product.id}-${i}`}
-              className="w-[min(320px,88vw)] shrink-0 sm:w-[300px]"
-              aria-hidden={i >= products.length}
-            >
-              <FeaturedProductCard product={product} />
-            </div>
-          ))}
-        </div>
+    <div className="relative">
+      <div
+        ref={scrollRef}
+        className="flex touch-pan-x gap-4 overflow-x-auto overscroll-x-contain pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        onTouchStart={pause}
+        onTouchEnd={resumeLater}
+        onWheel={() => {
+          pause();
+          resumeLater();
+        }}
+        onMouseEnter={pause}
+        onMouseLeave={() => {
+          pausedRef.current = false;
+          setPaused(false);
+        }}
+        aria-label={paused ? "Carrusel pausado" : "Carrusel de productos"}
+      >
+        {loop.map((product, i) => (
+          <div
+            key={`${product.id}-${i}`}
+            className="w-[min(300px,82vw)] shrink-0 sm:w-[280px]"
+            aria-hidden={i >= products.length}
+          >
+            <FeaturedProductCard product={product} />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -114,10 +161,14 @@ export function FeaturedProducts() {
           </p>
         </motion.div>
 
-        <div className="-mx-4 space-y-6 sm:mx-0">
+        <div className="-mx-4 space-y-5 px-4 sm:mx-0 sm:px-0">
           <MarqueeRow products={row1} direction="left" />
           <MarqueeRow products={row2} direction="right" />
         </div>
+
+        <p className="mt-3 text-center text-xs text-zinc-600 sm:hidden">
+          Desliza para explorar
+        </p>
 
         <div className="mt-8 text-center sm:mt-10">
           <Button

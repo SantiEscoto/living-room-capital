@@ -61,11 +61,6 @@ export function ProductCard({
           <Badge className="absolute left-3 top-3 bg-[#3B82F6] text-white">
             {product.category}
           </Badge>
-          {product.realPhoto && (
-            <Badge className="absolute right-3 top-3 bg-[#FFA500] text-black">
-              Catálogo real
-            </Badge>
-          )}
           {isTop && (
             <Badge className="absolute bottom-3 left-3 gap-1 bg-[#FFA500] text-black">
               <TrendingUp className="h-3 w-3" />
@@ -90,15 +85,15 @@ export function ProductCard({
             <span>{totalLikes}</span>
           </button>
         </div>
-        <CardHeader className={cn("gap-2 pb-3", isTop && "px-5 pt-1")}>
+        <CardHeader className={cn("gap-2", isTop && "pt-1")}>
           <CardTitle className={cn("text-white", isTop && "text-xl")}>
             {product.name}
           </CardTitle>
-          <CardDescription className={cn("line-clamp-2 leading-relaxed", isTop && "mt-1")}>
+          <CardDescription className="line-clamp-2 leading-relaxed">
             {product.description}
           </CardDescription>
         </CardHeader>
-        <CardContent className={cn("pb-4 pt-1", isTop && "px-5")}>
+        <CardContent className={cn(isTop && "pb-5")}>
           <p className="mt-1 text-sm font-semibold text-[#25D366]">{product.price}</p>
         </CardContent>
       </Card>

@@ -43,9 +43,6 @@ export function ProductModal({
         <DialogHeader>
           <div className="flex flex-wrap items-center gap-2">
             <Badge className="bg-[#3B82F6]">{product.category}</Badge>
-            {product.realPhoto && (
-              <Badge className="bg-[#FFA500] text-black">Catálogo real</Badge>
-            )}
             <button
               type="button"
               onClick={() => onToggleLike(product.id)}
