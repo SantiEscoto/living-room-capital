@@ -29,7 +29,7 @@ export function CustomizeForm() {
   const [height, setHeight] = useState("85");
   const [material, setMaterial] = useState<string>(MATERIALS[0]);
   const [fabric, setFabric] = useState<string>(FABRICS[0]);
-  const [color, setColor] = useState<string>(COLORS[0].hex);
+  const [color, setColor] = useState<string>(COLORS[1].hex);
 
   const selectedColorName =
     COLORS.find((c) => c.hex === color)?.name ?? "Personalizado";

@@ -111,8 +111,8 @@ export default function ARPage() {
           </div>
 
           <p className="text-xs text-zinc-600">
-            * Los modelos 3D mostrados son placeholders de demostración. Los
-            modelos finales de productos se integrarán próximamente.
+            * Modelos 3D de demostración con muebles reales en escala. Los modelos
+            finales de tus productos se integrarán próximamente.
           </p>
         </div>
       </div>

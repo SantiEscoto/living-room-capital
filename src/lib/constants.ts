@@ -6,7 +6,7 @@ export const BUSINESS = {
   whatsapp: "+5215585370697",
   whatsappDisplay: "+52 1 55 8537 0697",
   email: "livingroomcapital@hotmail.com",
-  facebook: "https://www.facebook.com/Living-Room-Capital",
+  facebook: "https://www.facebook.com/people/Living-Room-Capital/100063508091602/",
   hours: "Lunes a Domingo: 10:00 AM - 6:00 PM",
   address:
     "Local 102, Mercado Vasco de Quiroga, Av. Insurgentes Sur s/n, Tlalpan, 14000 CDMX",
@@ -48,7 +48,10 @@ export interface Product {
   price: string;
   image: string;
   featured?: boolean;
+  realPhoto?: boolean;
   modelUrl?: string;
+  facebookPostUrl?: string;
+  seedLikes?: number;
 }
 
 export const PRODUCTS: Product[] = [
@@ -62,8 +65,7 @@ export const PRODUCTS: Product[] = [
     image:
       "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
     featured: true,
-    modelUrl:
-      "https://modelviewer.dev/shared-assets/models/Chair.glb",
+    modelUrl: "/models/sala.glb",
   },
   {
     id: "sala-lineal-contemporanea",
@@ -158,6 +160,118 @@ export const PRODUCTS: Product[] = [
     image:
       "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
   },
+  // Productos con fotos reales del showroom (Living Room Capital — Facebook)
+  {
+    id: "sala-real-showroom",
+    name: "Sala Modular — Showroom CREA",
+    category: "Salas",
+    description:
+      "Sala de fábrica propia fotografiada en nuestro showroom del Mercado Vasco de Quiroga. Tapizado premium, diseño modular.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/sala-showroom.jpg",
+    featured: true,
+    realPhoto: true,
+    modelUrl: "/models/sala.glb",
+    seedLikes: 48,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=536078428519089&set=pb.100063508091602.-2207520000",
+  },
+  {
+    id: "sala-real-esquinera",
+    name: "Sala Esquinera — Foto Real",
+    category: "Salas",
+    description:
+      "Sala esquinera fabricada en Tlalpan. Colores y telas personalizables. Precio directo de fábrica.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/sala-esquinera.jpg",
+    realPhoto: true,
+    modelUrl: "/models/sala.glb",
+    seedLikes: 35,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=534212488705683&set=pb.100063508091602.-2207520000",
+  },
+  {
+    id: "sillon-real-tapizado",
+    name: "Sillón Tapizado — Foto Real",
+    category: "Sillones",
+    description:
+      "Sillón tapizado de fábrica propia. Disponible en múltiples colores y telas. Asesoría en showroom.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/sillon-tapizado.jpg",
+    featured: true,
+    realPhoto: true,
+    modelUrl: "/models/sillon.glb",
+    seedLikes: 52,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=534212492039016&set=pb.100063508091602.-2207520000",
+  },
+  {
+    id: "sillon-real-clasico",
+    name: "Sillón Clásico — Foto Real",
+    category: "Sillones",
+    description:
+      "Sillón clásico con acabados de primera calidad. Fabricación directa en Mercado CREA, Tlalpan.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/sillon-clasico.jpg",
+    realPhoto: true,
+    modelUrl: "/models/sillon.glb",
+    seedLikes: 29,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=113331270547494&set=pb.100063508091602.-2207520000",
+  },
+  {
+    id: "reclinable-real",
+    name: "Reclinable — Foto Real",
+    category: "Reclinables",
+    description:
+      "Reclinable de fábrica con mecanismo suave y tapizado resistente. Visítanos en Local 102.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/reclinable.jpg",
+    realPhoto: true,
+    seedLikes: 31,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=113331217214166&set=pb.100063508091602.-2207520000",
+  },
+  {
+    id: "futon-real",
+    name: "Futón — Foto Real",
+    category: "Futones",
+    description:
+      "Futón versátil ideal para espacios compactos. Fabricación propia con precios directos.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/futon.jpg",
+    realPhoto: true,
+    seedLikes: 22,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=113331117214176&set=pb.100063508091602.-2207520000",
+  },
+  {
+    id: "sofa-cama-real",
+    name: "Sofá Cama — Foto Real",
+    category: "Sofás Cama",
+    description:
+      "Sofá cama de fábrica propia. Maximiza tu espacio sin sacrificar estilo ni confort.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/sofa-cama.jpg",
+    realPhoto: true,
+    seedLikes: 27,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=113331097214178&set=pb.100063508091602.-2207520000",
+  },
+  {
+    id: "sala-real-lineal",
+    name: "Sala Lineal — Foto Real",
+    category: "Salas",
+    description:
+      "Sala lineal contemporánea fabricada en CDMX. Entrega en Tlalpan, CDMX y Estado de México.",
+    price: PRODUCT_PRICE,
+    image: "/images/catalog/sala-lineal.jpg",
+    realPhoto: true,
+    modelUrl: "/models/sala.glb",
+    seedLikes: 41,
+    facebookPostUrl:
+      "https://www.facebook.com/photo/?fbid=113331340547487&set=pb.100063508091602.-2207520000",
+  },
 ];
 
 export const TESTIMONIALS = [
@@ -213,7 +327,6 @@ export const FABRICS = [
 ] as const;
 
 export const COLORS = [
-  { name: "Negro", hex: "#1a1a1a" },
   { name: "Gris", hex: "#6b7280" },
   { name: "Beige", hex: "#d4c4a8" },
   { name: "Azul Marino", hex: "#1e3a5f" },
@@ -227,14 +340,18 @@ export const AR_MODELS = [
   {
     id: "sala-demo",
     name: "Sala Demo",
-    description: "Modelo placeholder de sala modular para visualización AR.",
-    src: "https://modelviewer.dev/shared-assets/models/Chair.glb",
+    description:
+      "Sofá de cuero con acabados sheen — visualízalo en tu sala antes de comprar.",
+    src: "/models/sala.glb",
+    cameraOrbit: "0deg 70deg 120%",
   },
   {
     id: "sillon-demo",
     name: "Sillón Demo",
-    description: "Modelo placeholder de sillón para probar la experiencia AR.",
-    src: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
+    description:
+      "Sillón tapizado con tela sheen — pruébalo en realidad aumentada en tu espacio.",
+    src: "/models/sillon.glb",
+    cameraOrbit: "0deg 75deg 90%",
   },
 ] as const;
 

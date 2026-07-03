@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -14,9 +13,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ProductImage } from "@/components/catalog/product-image";
 import { PRODUCTS } from "@/lib/constants";
 
-const featured = PRODUCTS.filter((p) => p.featured);
+const featured = [...PRODUCTS.filter((p) => p.featured)].sort(
+  (a, b) => (b.seedLikes ?? 0) - (a.seedLikes ?? 0)
+);
 
 export function FeaturedProducts() {
   return (
@@ -47,16 +49,15 @@ export function FeaturedProducts() {
             >
               <Card className="group overflow-hidden border-white/5 bg-[#111111] transition-colors hover:border-[#3B82F6]/30">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                  />
+                  <ProductImage src={product.image} alt={product.name} />
                   <Badge className="absolute left-3 top-3 bg-[#3B82F6] text-white">
                     {product.category}
                   </Badge>
+                  {product.realPhoto && (
+                    <Badge className="absolute right-3 top-3 bg-[#FFA500] text-black">
+                      Foto real
+                    </Badge>
+                  )}
                 </div>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg text-white">

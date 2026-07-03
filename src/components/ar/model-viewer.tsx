@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AR_MODELS } from "@/lib/constants";
 
 declare global {
@@ -17,12 +17,13 @@ declare global {
         "camera-controls"?: boolean;
         "auto-rotate"?: boolean;
         "shadow-intensity"?: string;
-        "environment-image"?: string;
         exposure?: string;
         alt?: string;
         poster?: string;
         loading?: string;
         "interaction-prompt"?: string;
+        "camera-orbit"?: string;
+        "field-of-view"?: string;
       };
     }
   }
@@ -31,10 +32,10 @@ declare global {
 interface ModelViewerProps {
   src: string;
   alt: string;
+  cameraOrbit?: string;
 }
 
-export function ModelViewer3D({ src, alt }: ModelViewerProps) {
-  const ref = useRef<HTMLElement>(null);
+export function ModelViewer3D({ src, alt, cameraOrbit }: ModelViewerProps) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export function ModelViewer3D({ src, alt }: ModelViewerProps) {
 
   return (
     <model-viewer
-      ref={ref}
+      key={src}
       src={src}
       alt={alt}
       ar
@@ -59,9 +60,11 @@ export function ModelViewer3D({ src, alt }: ModelViewerProps) {
       camera-controls
       auto-rotate
       shadow-intensity="1"
-      exposure="1"
+      exposure="1.2"
       interaction-prompt="auto"
       loading="eager"
+      camera-orbit={cameraOrbit ?? "0deg 75deg 105%"}
+      field-of-view="30deg"
       className="h-full w-full rounded-xl"
       style={{
         width: "100%",
@@ -73,21 +76,17 @@ export function ModelViewer3D({ src, alt }: ModelViewerProps) {
   );
 }
 
-interface ARViewerSectionProps {
-  selectedModel?: string;
-}
-
-export function ARViewerSection({
-  selectedModel = AR_MODELS[0].src,
-}: ARViewerSectionProps) {
-  const [activeModel, setActiveModel] = useState(selectedModel);
+export function ARViewerSection() {
+  const [activeId, setActiveId] = useState(AR_MODELS[0].id);
+  const active = AR_MODELS.find((m) => m.id === activeId) ?? AR_MODELS[0];
 
   return (
     <div className="space-y-6">
       <div className="aspect-square overflow-hidden rounded-xl border border-white/10 lg:aspect-[4/3]">
         <ModelViewer3D
-          src={activeModel}
-          alt="Modelo 3D de mueble para visualización AR"
+          src={active.src}
+          alt={active.description}
+          cameraOrbit={active.cameraOrbit}
         />
       </div>
 
@@ -95,9 +94,9 @@ export function ARViewerSection({
         {AR_MODELS.map((model) => (
           <button
             key={model.id}
-            onClick={() => setActiveModel(model.src)}
+            onClick={() => setActiveId(model.id)}
             className={`rounded-lg border px-4 py-2 text-sm transition-colors ${
-              activeModel === model.src
+              activeId === model.id
                 ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#3B82F6]"
                 : "border-white/10 bg-[#111111] text-zinc-400 hover:text-white"
             }`}
@@ -106,6 +105,7 @@ export function ARViewerSection({
           </button>
         ))}
       </div>
+      <p className="text-sm text-zinc-500">{active.description}</p>
     </div>
   );
 }
