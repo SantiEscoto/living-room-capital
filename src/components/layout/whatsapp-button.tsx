@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/brand-icons";
 
 const WHATSAPP_URL = "https://wa.me/5215585370697";
 
 export function WhatsAppButton() {
   return (
-    <div className="group fixed bottom-6 right-6 z-50">
+    <div className="group fixed bottom-5 right-4 z-50 sm:bottom-6 sm:right-6">
       <span
         role="tooltip"
-        className="pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-lg bg-[#111111] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-lg ring-1 ring-white/10 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+        className="pointer-events-none absolute right-full top-1/2 mr-3 hidden -translate-y-1/2 whitespace-nowrap rounded-lg bg-[#111111] px-3 py-2 text-sm font-medium text-white opacity-0 shadow-lg ring-1 ring-white/10 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 sm:block"
       >
         Escríbenos por WhatsApp
       </span>
@@ -27,11 +27,7 @@ export function WhatsAppButton() {
         whileTap={{ scale: 0.95 }}
         aria-label="Escríbenos por WhatsApp"
       >
-        <MessageCircle className="h-7 w-7" />
-        <span className="absolute -top-1 -right-1 flex h-4 w-4">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-75" />
-          <span className="relative inline-flex h-4 w-4 rounded-full bg-[#4ade80]" />
-        </span>
+        <WhatsAppIcon className="h-7 w-7" />
       </motion.a>
     </div>
   );

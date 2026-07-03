@@ -1,12 +1,7 @@
 import Link from "next/link";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  MessageCircle,
-} from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { FacebookIcon, WhatsAppIcon } from "@/components/icons/brand-icons";
 import { BUSINESS, NAV_LINKS } from "@/lib/constants";
 
 export function Footer() {
@@ -35,9 +30,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-[#1877F2] hover:text-[#1877F2]"
               >
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1877F2] text-[10px] font-bold text-white">
-                  f
-                </span>
+                <FacebookIcon className="h-4 w-4 shrink-0 text-[#1877F2]" />
                 Facebook
               </a>
               <a
@@ -46,7 +39,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:border-[#25D366] hover:text-[#25D366]"
               >
-                <MessageCircle className="h-4 w-4" />
+                <WhatsAppIcon className="h-4 w-4 shrink-0 text-[#25D366]" />
                 WhatsApp
               </a>
             </div>
