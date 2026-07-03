@@ -26,7 +26,7 @@ const row2 = featured.filter((_, i) => i % 2 === 1);
 
 function FeaturedProductCard({ product }: { product: Product }) {
   return (
-    <Card className="group h-full overflow-hidden border-white/5 bg-[#111111] transition-colors hover:border-[#3B82F6]/30">
+    <Card className="group overflow-hidden border-white/5 bg-[#111111] transition-colors hover:border-[#3B82F6]/30">
       <div className="relative aspect-[4/3] overflow-hidden">
         <ProductImage src={product.image} alt={product.name} />
         <Badge className="absolute left-2 top-2 bg-[#3B82F6] text-[10px] text-white sm:left-3 sm:top-3 sm:text-xs">
@@ -38,25 +38,23 @@ function FeaturedProductCard({ product }: { product: Product }) {
           </Badge>
         )}
       </div>
-      <CardHeader className="p-3 pb-1 sm:p-4 sm:pb-2">
-        <CardTitle className="line-clamp-1 text-sm text-white sm:text-lg">
+      <CardHeader className="gap-2 p-4 pb-2">
+        <CardTitle className="line-clamp-1 text-base text-white sm:text-lg">
           {product.name}
         </CardTitle>
-        <CardDescription className="line-clamp-2 text-xs sm:text-sm">
+        <CardDescription className="line-clamp-2 text-sm leading-relaxed">
           {product.description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="px-3 pb-1 sm:px-4 sm:pb-2">
-        <p className="text-xs font-semibold text-[#25D366] sm:text-sm">
-          {product.price}
-        </p>
+      <CardContent className="px-4 pb-2 pt-0">
+        <p className="text-sm font-semibold text-[#25D366]">{product.price}</p>
       </CardContent>
-      <CardFooter className="p-3 pt-0 sm:p-4 sm:pt-0">
+      <CardFooter className="p-4 pt-0">
         <Button
           asChild
           variant="ghost"
           size="sm"
-          className="h-8 w-full text-xs text-[#3B82F6] hover:bg-[#3B82F6]/10 hover:text-[#3B82F6] sm:text-sm"
+          className="h-9 w-full text-sm text-[#3B82F6] hover:bg-[#3B82F6]/10 hover:text-[#3B82F6]"
         >
           <Link href="/catalogo">Ver detalle</Link>
         </Button>
@@ -75,22 +73,24 @@ function MarqueeRow({
   const loop = [...products, ...products];
 
   return (
-    <div className="overflow-hidden">
-      <div
-        className={cn(
-          "flex w-max gap-4 hover:[animation-play-state:paused] motion-reduce:animate-none",
-          direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
-        )}
-      >
-        {loop.map((product, i) => (
-          <div
-            key={`${product.id}-${i}`}
-            className="w-[min(280px,72vw)] shrink-0"
-            aria-hidden={i >= products.length}
-          >
-            <FeaturedProductCard product={product} />
-          </div>
-        ))}
+    <div className="relative py-2 [mask-image:linear-gradient(to_right,transparent,black_32px,black_calc(100%-32px),transparent)]">
+      <div className="overflow-hidden">
+        <div
+          className={cn(
+            "flex w-max items-stretch gap-5 hover:[animation-play-state:paused] motion-reduce:animate-none",
+            direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
+          )}
+        >
+          {loop.map((product, i) => (
+            <div
+              key={`${product.id}-${i}`}
+              className="w-[min(320px,88vw)] shrink-0 sm:w-[300px]"
+              aria-hidden={i >= products.length}
+            >
+              <FeaturedProductCard product={product} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -114,7 +114,7 @@ export function FeaturedProducts() {
           </p>
         </motion.div>
 
-        <div className="-mx-4 space-y-4 overflow-hidden sm:mx-0">
+        <div className="-mx-4 space-y-6 sm:mx-0">
           <MarqueeRow products={row1} direction="left" />
           <MarqueeRow products={row2} direction="right" />
         </div>

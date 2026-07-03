@@ -90,16 +90,16 @@ export function ProductCard({
             <span>{totalLikes}</span>
           </button>
         </div>
-        <CardHeader className="pb-2">
+        <CardHeader className={cn("gap-2 pb-3", isTop && "px-5 pt-1")}>
           <CardTitle className={cn("text-white", isTop && "text-xl")}>
             {product.name}
           </CardTitle>
-          <CardDescription className="line-clamp-2">
+          <CardDescription className={cn("line-clamp-2 leading-relaxed", isTop && "mt-1")}>
             {product.description}
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <p className="text-sm font-semibold text-[#25D366]">{product.price}</p>
+        <CardContent className={cn("pb-4 pt-1", isTop && "px-5")}>
+          <p className="mt-1 text-sm font-semibold text-[#25D366]">{product.price}</p>
         </CardContent>
       </Card>
     </motion.div>
