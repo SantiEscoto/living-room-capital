@@ -77,7 +77,7 @@ export function ModelViewer3D({ src, alt, cameraOrbit }: ModelViewerProps) {
 }
 
 export function ARViewerSection() {
-  const [activeId, setActiveId] = useState(AR_MODELS[0].id);
+  const [activeId, setActiveId] = useState<string>(AR_MODELS[0].id);
   const active = AR_MODELS.find((m) => m.id === activeId) ?? AR_MODELS[0];
 
   return (

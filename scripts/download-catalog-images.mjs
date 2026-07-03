@@ -21,7 +21,7 @@ const images = {
   "futon.jpg":
     "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=960&q=85",
   "sofa-cama.jpg":
-    "https://images.unsplash.com/photo-1540574163026-643ea20ade68?w=960&q=85",
+    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=960&q=85",
   "sala-lineal.jpg":
     "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=960&q=85",
 };
